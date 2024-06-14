@@ -3,14 +3,10 @@ import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
 from streamlit_star_rating import st_star_rating
-import time
 import warnings
 warnings.filterwarnings('ignore', message="Error kìa")
 st.set_page_config(layout="wide")
 data = np.array([10, 15, 7, 20, 13, 15])
-with st.spinner('Wait for it...'):
-    time.sleep(2)
-st.success('Done!')
 st.balloons()
 st.write(st.session_state.idRes)
 st.button("show", type="primary")
