@@ -2,28 +2,42 @@ from streamlit_echarts import st_echarts
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 from streamlit_star_rating import st_star_rating
 import warnings
 warnings.filterwarnings('ignore', message="Error kìa")
 st.set_page_config(layout="wide")
-data = np.array([10, 15, 7, 20, 13, 15])
-st.balloons()
-st.write(id_restaurant)
-st.button("show", type="primary")
-if st.button("show"):
-    st.write("Why hello there")
-    plt.figure(figsize=(8, 6))
-    plt.bar(range(len(data)), data, color='skyblue')
-    plt.xlabel('Index')
-    plt.ylabel('Value')
-    plt.title('Bar Plot of 6 Numbers')
-    plt.xticks(range(len(data)), ['A', 'B', 'C', 'D', 'E', 'F'])
-    plt.plot()
+#1 read data
+data=pd.read_csv("data.csv", encoding='utf-8')
+data_res=st.session_state.data_res
+id_res=st.session_state.idRes
 
-col1, col2, col3 =st.columns(3)
+#2 process data
+df_comment= data[data["IDRestaurant"]==id_res]
+df_rating=df_comment.groupby('Rating').value_counts()
+score= df_comment['score'].value_counts()
+try:
+    st.write("Positive/Negative: ", score[1], '/', score[0])
+    if (score[1]!=0) and (score[0]!=0):
+        p_n=round(score[1]/(score[0]+score[1])*100,2)
+    else:
+        p_n=0
+except:
+    p_n=0
+
+   
+def res_item(name,address,rating,count):
+    st.write("#### "+name)
+    star=st_star_rating(label="Rating",maxValue=10, defaultValue=rating,size=20)
+    st.write(star)
+    st.write("###### Số lượt rating : "+str(count))
+    st.write("###### Địa chỉ: "+ address) 
+r=data_res[data_res["ID"]==id_res].iloc[0].to_list()
+
+#GUI
+col1, col2  =st.columns(2)
 with col1:
-    stars = st_star_rating(label="Rating",maxValue=10, defaultValue=5,size=20,)
-    st.write(stars)
+    res_item(name=r[1],address=r[2],count=r[9],rating=r[8])
 with col2:
     option = {
         "tooltip": {
@@ -71,12 +85,25 @@ with col2:
                 "valueAnimation": "true",
             },
             "data": [{
-                "value": 50,
+                "value": p_n,
                 "name": 'Mức độ hài lòng'
             }]
         }]
     };
-    st.write(st_echarts(options=option, key="1"))
-with col3:
-    stars = st_star_rating(label="Rating",maxValue=10, defaultValue=8,size=20)
-    st.write(stars)
+    st.write(st_echarts(options=option))
+col1, col2  =st.columns(2)
+with col1:
+    st.write("""#### Số lượt comment theo thời gian""") 
+    fig, ax = plt.subplots(figsize = (10, 3))
+    ax.hist(df_comment['Time_Y'], bins=100)
+    plt.yticks(range(0, 50, 10))
+    plt.title('Distribution of Comment over Year')
+    plt.xlabel('Year')
+    st.pyplot(fig)
+with col2:
+    st.write("""#### Số lượt Rating""") 
+    bins = np.arange(0, 11, 1)  # Creates bins [0, 1, 2, ..., 10]
+    labels = [f'{i} to {i+1}' for i in range(10)]
+    df_comment['RatingGroup'] = pd.cut(df_comment['Rating'], bins=bins, labels=labels, right=False)
+    df_comment.groupby('RatingGroup')['RatingGroup'].count().plot(kind='bar')
+    st.pyplot(fig)
