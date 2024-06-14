@@ -9,7 +9,6 @@ from underthesea import word_tokenize, pos_tag, sent_tokenize
 import regex
 from wordcloud import WordCloud
 import re
-import time
 # 1. Read data
 #data = pd.read_csv("spam.csv", encoding='latin-1')
 
@@ -322,8 +321,6 @@ def login_page():
                 if id_restaurant in id_list:
                     st.success(f"Logged in as {id_restaurant}")
                     st.write(st.session_state.idRes)
-                    with st.spinner('Wait for it...'):
-                        time.sleep(3)
                     st.switch_page("pages/report_page.py")
                 else:
                     st.error("Incorrect ID. Please try again.")
