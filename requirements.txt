@@ -5,4 +5,4 @@ matplotlib
 seaborn
 scikit-learn
 streamlit_echarts == 1.21.2
-streamlit_star_rating == 0.0.6
+st-star-rating
