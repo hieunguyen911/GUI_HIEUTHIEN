@@ -12,7 +12,7 @@ with st.spinner('Wait for it...'):
     time.sleep(2)
 st.success('Done!')
 st.balloons()
-st.write(st.session_state.idRes)
+#st.write(st.session_state.idRes)
 st.button("show", type="primary")
 if st.button("show"):
     st.write("Why hello there")
