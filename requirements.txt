@@ -4,5 +4,5 @@ pandas
 matplotlib
 seaborn
 scikit-learn
-streamlit_echarts from 0.4.0
-streamlit_star_rating from 0.0.6
+streamlit_echarts == 0.4.0
+streamlit_star_rating == 0.0.6
