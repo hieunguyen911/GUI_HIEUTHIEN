@@ -427,7 +427,7 @@ def project_page():
     MultinomialNB và SVM là 02 models cho kết quả accuracy cao nhất.  
     Tuy nhiên MultinomialNB mất rất ít thời gian xử lý, đồng thời recall (dự đoán) cho Nhóm 1 (Negative) có chút nhỉnh hơn SVM.""")
     st.write("""#### Kết quả fiting model 2 classes Spark""")
-    st.image('Project 3/Model/kq3.1.png')
+    st.image('Project 3/Model/kq3.1.PNG')
     st.write("""#### KẾT LUẬN:  Chọn thuật toán MultinomialNB trong machine learning truyền thống làm mô hình Sentiment analysis, vì có accuracy cao và thời gian xử lý nhanh.""")
     
     
