@@ -410,7 +410,7 @@ def project_page():
     with col1:
         st.image('Project 3/Model/kq1.3.1.PNG')
     with col2:
-        st.image('Project 3/Model/kq1.3.2.png')
+        st.image('Project 3/Model/kq1.3.2.PNG')
     st.write("""
     Nhận xét: Nếu chia làm 3 nhóm:  
     Nhóm 1 (Negative): Các models hoạt động ở mức trung bình, nhưng vẫn còn khả năng cải thiện, đặc biệt là recall (số lượng lớn các kết quả false negatives).  
@@ -420,9 +420,9 @@ def project_page():
     st.write("""#### Kết quả fiting model 2 classes""")
     col1, col2 =st.columns(2)
     with col1:
-        st.image('Project 3/Model/kq2.2.1.png')
+        st.image('Project 3/Model/kq2.2.1.PNG')
     with col2:
-        st.image('Project 3/Model/kq2.2.2.png')
+        st.image('Project 3/Model/kq2.2.2.PNG')
     st.write("""Nhận xét:  
     MultinomialNB và SVM là 02 models cho kết quả accuracy cao nhất.  
     Tuy nhiên MultinomialNB mất rất ít thời gian xử lý, đồng thời recall (dự đoán) cho Nhóm 1 (Negative) có chút nhỉnh hơn SVM.""")
