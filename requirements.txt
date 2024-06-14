@@ -1,9 +1,9 @@
 numpy
 pandas
-pickle5  # pickle is included in Python's standard library, but pickle5 may be needed for newer functionalities
+pickle
 streamlit
 matplotlib
-scikit-learn  # sklearn is part of scikit-learn
+scikit-learn
 seaborn
 streamlit-star-rating
 underthesea
@@ -11,3 +11,4 @@ regex
 demoji
 pyvi
 wordcloud
+collections
