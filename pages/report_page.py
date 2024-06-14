@@ -8,7 +8,7 @@ warnings.filterwarnings('ignore', message="Error kìa")
 st.set_page_config(layout="wide")
 data = np.array([10, 15, 7, 20, 13, 15])
 st.balloons()
-st.write(st.session_state.idRes)
+st.write(id_restaurant)
 st.button("show", type="primary")
 if st.button("show"):
     st.write("Why hello there")
