@@ -323,7 +323,7 @@ def login_page():
                     st.write(st.session_state.idRes)
                     with st.spinner('Wait for it...'):
                         time.sleep(3)
-                        st.switch_page("pages/report_page.py")
+                    st.switch_page("pages/report_page.py")
                 else:
                     st.error("Incorrect ID. Please try again.")
             except ValueError:
