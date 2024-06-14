@@ -4,3 +4,4 @@ pandas
 matplotlib
 seaborn
 sklearn
+streamlit_echarts
