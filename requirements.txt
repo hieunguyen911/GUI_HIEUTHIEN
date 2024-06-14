@@ -1,17 +1,13 @@
-import pandas as pd
-import pickle
-import streamlit as st
-import matplotlib.pyplot as plt
-from sklearn import metrics
-import seaborn as sns
-from streamlit_star_rating import st_star_rating
-import warnings
-warnings.filterwarnings('ignore', message="Error kìa")
-from underthesea import word_tokenize, pos_tag, sent_tokenize
-import regex
-import demoji
-from pyvi import ViPosTagger, ViTokenizer
-import string
-from wordcloud import WordCloud
-import re
-from collections import Counter
+numpy
+pandas
+pickle5  # pickle is included in Python's standard library, but pickle5 may be needed for newer functionalities
+streamlit
+matplotlib
+scikit-learn  # sklearn is part of scikit-learn
+seaborn
+streamlit-star-rating
+underthesea
+regex
+demoji
+pyvi
+wordcloud
