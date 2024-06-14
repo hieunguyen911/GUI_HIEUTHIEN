@@ -10,8 +10,6 @@ import regex
 from wordcloud import WordCloud
 import re
 # 1. Read data
-#data = pd.read_csv("spam.csv", encoding='latin-1')
-
 data_res =pd.read_csv("df_res_merge.csv", encoding='utf-8')
 data_res[["ID","ReviewCount"]]=data_res[["ID","ReviewCount"]].astype("Int64")
 data_res[["Rating"]]=data_res[["Rating"]].astype(float)
@@ -314,13 +312,13 @@ def res_item(name,address,rating,count,key_in):
 def login_page():
     with st.container():
         st.title("Login")
-        id_restaurant =st.text_input("ID Restaurant", value="Enter your ID",key="idRes")
+        id_restaurant =st.text_input("ID Restaurant", value="Enter your ID")
         if st.button("Login"):
             try:
                 id_restaurant = int(id_restaurant)
                 if id_restaurant in id_list:
-                    st.success(f"Logged in as {id_restaurant}")
-                    st.write(st.session_state.idRes)
+                    st.session_state["idRes"]=id_restaurant
+                    st.session_state['data_res']=data_res
                     st.switch_page("pages/report_page.py")
                 else:
                     st.error("Incorrect ID. Please try again.")
