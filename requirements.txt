@@ -1,8 +1,8 @@
-streamlit
+streamlit>=0.69
 numpy
 pandas
 matplotlib
 seaborn
 scikit-learn
-streamlit_echarts == 1.21.2
+streamlit-echarts>=0.4.0
 st-star-rating
