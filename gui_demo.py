@@ -321,9 +321,9 @@ def login_page():
                 if id_restaurant in id_list:
                     st.success(f"Logged in as {id_restaurant}")
                     if 'idRes' not in st.session_state:
-                    st.session_state['idRes'] = id_restaurant
-                    st.write(st.session_state.idRes)
-                    st.switch_page("pages/report_page.py")
+                        st.session_state['idRes'] = id_restaurant
+                        st.write(st.session_state.idRes)
+                        st.switch_page("pages/report_page.py")
                 else:
                     st.error("Incorrect ID. Please try again.")
             except ValueError:
