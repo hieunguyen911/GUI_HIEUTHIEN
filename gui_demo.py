@@ -9,6 +9,7 @@ from underthesea import word_tokenize, pos_tag, sent_tokenize
 import regex
 from wordcloud import WordCloud
 import re
+import time
 # 1. Read data
 #data = pd.read_csv("spam.csv", encoding='latin-1')
 
