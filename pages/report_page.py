@@ -97,7 +97,6 @@ with col1:
     fig, ax = plt.subplots(figsize = (10, 3))
     ax.hist(df_comment['Time_Y'], bins=100)
     plt.yticks(range(0, 50, 10))
-    plt.title('Distribution of Comment over Year')
     plt.xlabel('Year')
     st.pyplot(fig)
 with col2:
