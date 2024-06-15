@@ -399,7 +399,7 @@ def project_page():
     st.image('Project 3/EDA/PwC.png', caption="POSITIVE WORD CLOUD")
     st.image('Project 3/EDA/NwC.png', caption="NEGATIVE WORD CLOUD")
     st.write("""### XỬ LÝ NGÔN NGỮ TIẾNG VIỆT""")
-    st.image("Project 3/vietProcess.jpg", caption="QUY TRÌNH XỬ LÝ NGÔN NGỮ TIẾNG VIỆT")
+    st.image("Project 3/vietProcess_2.jpg", caption="QUY TRÌNH XỬ LÝ NGÔN NGỮ TIẾNG VIỆT")
     st.write("""### XÂY DỰNG TẬP LUẬT""")
     st.image("Project 3/tapLuat.jpg", caption="TẬP LUẬT")
     st.write("""### XÂY DỰNG MODEL""")
