@@ -14,18 +14,18 @@ import pickle
 
 st.set_page_config(layout="wide")
 #1 read data
-data=pd.read_csv("data.csv", encoding='utf-8')
+data=pd.read_csv("data_new.csv", encoding='utf-8')
 data_res=st.session_state.data_res
 id_res=st.session_state.idRes
 
 #2 process data
 df_comment= data[data["IDRestaurant"]==id_res]
 df_rating=df_comment.groupby('Rating').value_counts()
-score= df_comment['score'].value_counts()
+score= df_comment['Total_Score_2'].value_counts()
 try:
-    st.write("Positive/Negative: ", score[1], '/', score[0])
-    if (score[1]!=0) and (score[0]!=0):
-        p_n=round(score[1]/(score[0]+score[1])*100,2)
+    st.write("Positive/Negative: ", score[2], '/', score[1])
+    if (score[2]!=0) and (score[1]!=0):
+        p_n=round(score[2]/(score[2]+score[1])*100,2)
     else:
         p_n=0
 except:
@@ -257,8 +257,8 @@ def word_cloud(text):
 def sentiment_report():
         
         # Transform the comment to TF-IDF features
-        df_comment['text_processed'].fillna(" ", inplace=True)
-        X = df_comment['text_processed']
+        df_comment['comment_processed'].fillna(" ", inplace=True)
+        X = df_comment['comment_processed']
         X_tfidf = tfidf_model.transform(X)
 
         # Predict the class of the comment
@@ -293,7 +293,7 @@ def sentiment_report():
         with col1:
         # Generate word clouds for positive and negative comment
             st.write("""### Word Cloud bình luận tích cực""")
-            positive_comments = df_comment[df_comment['predict'] == 'Positive']['text_processed']
+            positive_comments = df_comment[df_comment['predict'] == 'Positive']['comment_processed']
             if not positive_comments.empty:
                 fig1, ax1= plt.subplots(figsize = (12, 8))
                 wordcloudpos = WordCloud(background_color="white", max_font_size=50, scale=3).generate(' '.join(positive_comments))
@@ -303,7 +303,7 @@ def sentiment_report():
                 st.pyplot(fig1)
         with col2:
             st.write("""### Word Cloud bình luận tiêu cực""")
-            negative_comments = df_comment[df_comment['predict'] == 'Negative']['text_processed']
+            negative_comments = df_comment[df_comment['predict'] == 'Negative']['comment_processed']
             if not negative_comments.empty:
                 fig2, ax2= plt.subplots(figsize = (12, 8))
                 wordcloudneg = WordCloud(background_color="white", max_font_size=50, scale=3).generate(' '.join(negative_comments))
