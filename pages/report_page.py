@@ -19,10 +19,9 @@ data_res=st.session_state.data_res
 id_res=st.session_state.idRes
 
 #2 process data
-data['Time'] = pd.to_datetime(data['Time'], format='%d/%m/%Y %H:%M', errors='coerce')
-data['Time_Y'] = data['Time'].dt.year
 df_comment= data[data["IDRestaurant"]==id_res]
-df_rating=df_comment.groupby('Rating').value_counts()
+df_comment['Time']=df_comment['Time'].apply(pd.to_datetime)
+df_comment['Time_Y'] = df_comment['Time'].apply(lambda x: str(x.year))
 score= df_comment['Total_Score_2'].value_counts()
 try:
     st.write("Positive/Negative: ", score[2], '/', score[1])
@@ -287,8 +286,8 @@ def sentiment_report():
             
         # Print the 10 most recent comments
         print("\n10 bình luận mới nhất")
-        report = df_comment.sort_values(by='Time_x', ascending=False).head(10)
-        report = report[["IDRestaurant", "User", "Time_x", "Rating", 'Comment', 'predict']]  # Modify to match your actual columns
+        report = df_comment.sort_values(by='Time', ascending=False).head(10)
+        report = report[["IDRestaurant", "User", "Time", "Rating", 'Comment', 'predict']]  # Modify to match your actual columns
         st.table(report)
         col1, col2  =st.columns(2)
         with col1:
