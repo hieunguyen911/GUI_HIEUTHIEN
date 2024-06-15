@@ -7,3 +7,6 @@ streamlit-echarts>=0.4.0
 st-star-rating
 underthesea
 wordcloud
+regex
+pyvi
+demoji
