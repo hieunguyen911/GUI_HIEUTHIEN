@@ -20,6 +20,8 @@ id_res=st.session_state.idRes
 
 #2 process data
 df_comment= data[data["IDRestaurant"]==id_res]
+df_comment['Time'] = pd.to_datetime(df_comment['Time'], format='%d/%m/%Y %H:%M')
+df_comment['Time_Y'] = df_comment['Time'].dt.year
 df_rating=df_comment.groupby('Rating').value_counts()
 score= df_comment['Total_Score_2'].value_counts()
 try:
@@ -255,10 +257,9 @@ def word_cloud(text):
     return wordcloud
 #function8: Classify_comment
 def sentiment_report():
-        
         # Transform the comment to TF-IDF features
-        df_comment['comment_processed'].fillna(" ", inplace=True)
-        X = df_comment['comment_processed']
+        df_comment['Comment_processed'].fillna(" ", inplace=True)
+        X = df_comment['Comment_processed']
         X_tfidf = tfidf_model.transform(X)
 
         # Predict the class of the comment
@@ -293,7 +294,7 @@ def sentiment_report():
         with col1:
         # Generate word clouds for positive and negative comment
             st.write("""### Word Cloud bình luận tích cực""")
-            positive_comments = df_comment[df_comment['predict'] == 'Positive']['comment_processed']
+            positive_comments = df_comment[df_comment['predict'] == 'Positive']['Comment_processed']
             if not positive_comments.empty:
                 fig1, ax1= plt.subplots(figsize = (12, 8))
                 wordcloudpos = WordCloud(background_color="white", max_font_size=50, scale=3).generate(' '.join(positive_comments))
@@ -303,7 +304,7 @@ def sentiment_report():
                 st.pyplot(fig1)
         with col2:
             st.write("""### Word Cloud bình luận tiêu cực""")
-            negative_comments = df_comment[df_comment['predict'] == 'Negative']['comment_processed']
+            negative_comments = df_comment[df_comment['predict'] == 'Negative']['Comment_processed']
             if not negative_comments.empty:
                 fig2, ax2= plt.subplots(figsize = (12, 8))
                 wordcloudneg = WordCloud(background_color="white", max_font_size=50, scale=3).generate(' '.join(negative_comments))
