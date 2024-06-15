@@ -19,7 +19,7 @@ data_res=st.session_state.data_res
 id_res=st.session_state.idRes
 
 #2 process data
-data['Time'] = pd.to_datetime(data['Time'], format='%d/%m/%Y %H:%M')
+data['Time'] = pd.to_datetime(data['Time'], format='%d/%m/%Y %H:%M', errors='coerce')
 data['Time_Y'] = data['Time'].dt.year
 df_comment= data[data["IDRestaurant"]==id_res]
 df_rating=df_comment.groupby('Rating').value_counts()
